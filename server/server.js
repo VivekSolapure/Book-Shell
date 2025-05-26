@@ -22,6 +22,9 @@ app.use('/api/books', require('./routes/bookRoutes'));
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/users', require('./routes/userRoutes'));
 app.use('/api/auth', authRoutes);
+app.get('/', (req, res) => {
+  res.send('Server is successfully deployed and running!');
+});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
