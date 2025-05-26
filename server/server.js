@@ -11,7 +11,7 @@ connectDB();
 
 app.use(cors(
   {
-    origin : ["https://book-shell-89u7.vercel.app/"],
+    origin : ["https://book-shell-89u7.vercel.app"],
     methods: ["POST","GET","PUT"],
     credentials: true
   }
