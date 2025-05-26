@@ -9,7 +9,13 @@ require('dotenv').config();
 const app = express();
 connectDB();
 
-app.use(cors());
+app.use(cors(
+  {
+    origin : ["https://book-shell-89u7.vercel.app/"],
+    methods: ["POST","GET","PUT"],
+    credentials: true
+  }
+));
 app.use(bodyParser.json());
 
 app.use('/api/books', require('./routes/bookRoutes'));
