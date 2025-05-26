@@ -5,7 +5,7 @@ export default function BookList() {
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/books')
+    axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/books`)
       .then(res => setBooks(res.data.books))
       .catch(err => console.error(err));
   }, []);

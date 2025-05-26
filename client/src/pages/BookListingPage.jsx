@@ -10,21 +10,22 @@ const BookListingPage = ({ searchTerm = '', filter = '' }) => {
 
   useEffect(() => {
     async function fetchBooks() {
+      console.log(process.env.REACT_APP_API_BASE_URL);
       setLoading(true);
       try {
         let res;
         if (searchTerm) {
-          res = await axios.get(`/api/books/search?query=${encodeURIComponent(searchTerm)}`);
+          res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/books/search?query=${encodeURIComponent(searchTerm)}`);
           setBooks(res.data.books);
           setTotalPages(1);
           setCurrentPage(1);
         } else if (filter) {
-          res = await axios.get(`/api/books/filter?category=${encodeURIComponent(filter)}`);
+          res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/books/filter?category=${encodeURIComponent(filter)}`);
           setBooks(res.data.books);
           setTotalPages(1);
           setCurrentPage(1);
         } else {
-          res = await axios.get(`/api/books?page=${currentPage}`);
+          res = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/books?page=${currentPage}`);
           setBooks(res.data.books);
           setTotalPages(res.data.totalPages);
         }

@@ -7,7 +7,7 @@ export const UserProvider = ({ children }) => {
   const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')) || null);    
 
   const login = async (email, password) => {
-    const res = await axios.post('/api/auth/login', {
+    const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/login`, {
       email,
       password,
     });
@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
 
   // --- Add this function for registration ---
   const register = async (name, email, password) => {
-    const res = await axios.post('/api/auth/register', {
+    const res = await axios.post(`${process.env.REACT_APP_API_BASE_URL}/api/auth/register`, {
       name,
       email,
       password,

@@ -13,11 +13,13 @@ const BookDetailPage = () => {
 
   useEffect(() => {
     const fetchBookAndReviews = async () => {
+      console.log(process.env.REACT_APP_API_BASE_URL);
+      
       try {
-        const bookRes = await axios.get(`api/books/${isbn}`);
+        const bookRes = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/books/${isbn}`);
         setBook(bookRes.data);
 
-        const reviewRes = await axios.get(`/api/reviews/${isbn}`);        
+        const reviewRes = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${isbn}`);        
         setReviews(reviewRes.data);
       } catch (error) {
         console.error('Error fetching book or reviews:', error);
@@ -30,11 +32,11 @@ const BookDetailPage = () => {
   const addReview = async (reviewText) => {
     try {
       await axios.post(
-        `/api/reviews/${isbn}`,
+        `${process.env.REACT_APP_API_BASE_URL}/api/reviews/${isbn}`,
         { content: reviewText },
         { headers: { Authorization: `Bearer ${localStorage.getItem('token')}` } }
       );
-      const updatedReviews = await axios.get(`/api/reviews/${isbn}`);
+      const updatedReviews = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/api/reviews/${isbn}`);
       setReviews(updatedReviews.data);
     } catch (err) {
       console.error('Error posting review:', err);
